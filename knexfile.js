@@ -2,9 +2,9 @@
 
 const localPgConnection = {
   host: 'localhost',
-  database: 'my_db',
-  user: 'username',
-  password: 'password'
+  database: 'trip-split',
+  user: 'will',
+  password: 'pass'
 }
 
 const prodDbConnection = process.env.DATABASE_URL || localPgConnection
@@ -14,6 +14,11 @@ module.exports = {
     client: 'sqlite3',
     connection: {
       filename: './data/users.db3',
+    },
+    pool: {
+      afterCreate: (conn, done) => {
+        conn.run('PRAGMA foreign_keys = ON', done);
+      },
     },
     useNullAsDefault: true,
     migrations: {

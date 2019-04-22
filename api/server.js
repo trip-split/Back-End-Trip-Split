@@ -17,7 +17,7 @@ server.get('/', async (req, res) => {
 });
 
 server.use('/api', authRouter);
-server.use('/api', authenticate);
+// server.use('/api', authenticate);
 server.use('/api/users', usersRouter);
 
 module.exports = server;
