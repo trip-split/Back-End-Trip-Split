@@ -2,7 +2,7 @@
 
 const localPgConnection = {
   host: 'localhost',
-  database: 'trip-split',
+  database: 'users',
   user: 'will',
   password: 'pass'
 }
