@@ -17,7 +17,7 @@ The _Database Schemas_ for the `users` and `posts` resources are:
 ##### Users
 
 Endpoint `/api/users/`
-`.get` returns an array of users who are registered in the database
+- `.get` returns an array of users who are registered in the database
 
 | field                   | data type        | metadata                                            |
 | ----------------------- | ---------------- | --------------------------------------------------- |
@@ -29,11 +29,11 @@ Endpoint `/api/users/`
 ##### Trips
 
 Endpoints:
-`.get` to `/api/trips/` returns an array of all trips from all users in the database
-`.get` to `/api/usertrips/:user_id` returns an array of all trips for each `user_id`
-`.post` to `/api/trips/` initializes a new trip
-`.delete` to `/api/trips/:id` deletes an entire trip by trip id 
-`.put` to `/api/trips/:id` lets you edit a trip by trip id with the edits in the req.body 
+- `.get` to `/api/trips/` returns an array of all trips from all users in the database
+- `.get` to `/api/usertrips/:user_id` returns an array of all trips for each `user_id`
+- `.post` to `/api/trips/` initializes a new trip
+- `.delete` to `/api/trips/:id` deletes an entire trip by trip id 
+- `.put` to `/api/trips/:id` lets you edit a trip by trip id with the edits in the req.body 
 
 
 | field                   | data type        | metadata                                            |
