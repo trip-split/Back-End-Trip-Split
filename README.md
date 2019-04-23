@@ -43,7 +43,7 @@ Endpoints:
 | date                    | string           | required                                            |
 | location                | string           | required                                            |
 | image                   | string           | not required                                        |
-| isCurrent               | false            | required                                            |
+| isCurrent               | boolean          | required                                            |
 
 
 
