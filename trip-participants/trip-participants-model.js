@@ -1,50 +1,27 @@
 const db = require('../data/dbConfig.js');
 
 module.exports = {
-  add,
-  find,
-  findBy,
+  addParticipant,
   findById,
-  update,
-  remove,
-  findTripByUser
+  findByTripId
 };
 
-function find() {
-  return db('trips').select('id', 'user_id', 'date', 'location', 'image');
-}
 
-function findBy(filter) {
-  return db('trips').where(filter);
-}
-
-async function add(trip) {
-  const [id] = await db('trips').insert(trip);
-
-  return findById(id);
+async function addParticipant(tripParticiapnt) {
+const [trips_id] = await db('trip_participants').insert(tripParticiapnt);
+//   console.log(newParticipant);
+  return findById(trips_id);
 }
 
 function findById(id) {
-  return db('trips')
+  return db('trips_id')
     .where({ id })
     .first();
 }
 
-function update(id, trips) {
-  return db('trips')
-    .where('id', Number(id))
-    .update(trips);
-}
-
-function remove(id) {
-  return db('trips')
-    .where('id', Number(id))
-    .del();
-}
-
-function findTripByUser(user_id) {
-  return db('trips')
-    .select('id', 'user_id', 'date', 'location', 'image')
-    .where({ user_id })
-//     .first();
-}
+function findByTripId(trips_id) {
+    return db('trips')
+      .select('id', 'trips_id', 'date', 'location', 'image')
+      .where({ trips_id })
+  //     .first();
+  }

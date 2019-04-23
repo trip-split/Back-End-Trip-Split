@@ -21,6 +21,15 @@ router.get('/usertrips/:user_id', (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.get('/trips/:id', (req, res) => {
+  const {id} = req.params;
+  Trips.findById(id)
+    .then(trips => {
+      res.json(trips);
+    })
+    .catch(err => res.send(err));
+});
+
 
 router.post('/trips',  (req, res) => {
   let tripTitle = req.body
