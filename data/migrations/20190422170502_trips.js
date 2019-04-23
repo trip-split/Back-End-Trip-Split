@@ -17,6 +17,8 @@ exports.up = function(knex) {
         .notNullable();
       trips
         .string('image', 128);
+      trips
+        .boolean('isCurrent');
     })
     .createTable('trip_participants_id', tp => {
         tp.increments();
