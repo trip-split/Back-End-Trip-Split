@@ -6,7 +6,8 @@ module.exports = {
   findBy,
   findById,
   update,
-  remove
+  remove,
+  findTripByUser
 };
 
 function find() {
@@ -39,4 +40,11 @@ function remove(id) {
   return db('trips')
     .where('id', Number(id))
     .del();
+}
+
+function findTripByUser(user_id) {
+  return db('trips')
+    .select('id', 'user_id', 'date', 'location', 'image')
+    .where({ user_id })
+//     .first();
 }

@@ -14,7 +14,7 @@ authRouter.post('/register', (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10); 
   user.password = hash;
-  console.log(user);
+  // console.log(user);
   Users.add(user)
     .then(saved => {
       res.status(201).json(saved);
