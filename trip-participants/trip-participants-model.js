@@ -8,8 +8,8 @@ module.exports = {
 
 
 async function addParticipant(tripParticiapnt) {
-const [trips_id] = await db('trip_participants').insert(tripParticiapnt);
-//   console.log(newParticipant);
+const newTraveler = await db('trip_participants').insert(tripParticiapnt);
+  console.log(newParticipant);
   return findById(trips_id);
 }
 
