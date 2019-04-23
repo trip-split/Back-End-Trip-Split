@@ -12,7 +12,7 @@
 
 #### Database Schemas
 
-The _Database Schemas_ for the `users` and `posts` resources are:
+The _Database Schemas_ for the `users` and `trips` resources are:
 
 ##### Users
 
