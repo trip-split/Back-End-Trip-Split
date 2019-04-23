@@ -17,29 +17,33 @@ exports.up = function(knex) {
         .notNullable();
       trips
         .string('image', 128);
+      trips
+        .boolean('isCurrent');
     })
-    .createTable('trip_participants_id', tp => {
-        tp.increments();
-        tp
-          .string('trip_participants_name', 128)
-          .notNullable();
-      })
+    // .createTable('trip_participants_id', tp => {
+    //     tp.increments();
+    //     tp
+    //       .string('trip_participants_name', 128)
+    //       .notNullable();
+    //   })
     .createTable('trip_participants', tripParticipants => {
       tripParticipants.increments();
       tripParticipants
         .integer("trips_id")
+        .notNullable()
         .unsigned()
         .references("id")
         .inTable("trips")
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       tripParticipants
-        .integer("trip_participants_id")
-        .unsigned()
-        .references("id")
-        .inTable("trip_participants_id")
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
+        .string("name", 128)
+        .notNullable()
+        // .unsigned()
+        // .references("id")
+        // .inTable("trip_participants_id")
+        // .onDelete('CASCADE')
+        // .onUpdate('CASCADE');
     })
     .createTable('events', events => {
         events.increments();
