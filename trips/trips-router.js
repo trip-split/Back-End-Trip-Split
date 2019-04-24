@@ -1,20 +1,11 @@
 const router = require('express').Router();
 
 const Trips = require('./trips-model.js');
+const db = require('../data/dbConfig.js');
 
 
 router.get('/trips', (req, res) => {
   Trips.find()
-    .then(trips => {
-      res.json(trips);
-    })
-    .catch(err => res.send(err));
-});
-
-router.get('/usertrips/:user_id', (req, res) => {
-  const {user_id} = req.params;
-  console.log(req.params)
-  Trips.findTripByUser(user_id)
     .then(trips => {
       res.json(trips);
     })
@@ -30,10 +21,27 @@ router.get('/trips/:id', (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.get("/usertrips/:id", (req, res) => {
+  const { id } = req.params;
+  getUsers(id)
+    .then(user => {
+      if (user) {
+        return getTrips(id).then(trip => {
+          user.trip = trip;
+          return res.status(200).json({ user });
+        });
+      } else {
+        res.status(404).json({ error: "please provide trip id" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({ error: "Could not get user items" });
+    });
+});
 
 router.post('/trips',  (req, res) => {
   let tripTitle = req.body
-  console.log(tripTitle.user_id)
+  // console.log(tripTitle)
   Trips
   .add(tripTitle)
   .then(trip => {
@@ -84,6 +92,17 @@ router.put('/trips/:id', (req, res) => {
       res.status(500).json({  success: false, error: 'The trip information could not be modified'})
   })
 })
+
+
+function getUsers(id) {
+  return db("users")
+    .where({ id })
+    .first();
+}
+
+function getTrips(id) {
+  return db("trips").where({ user_id: id });
+}
 
 
 module.exports = router;

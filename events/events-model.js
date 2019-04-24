@@ -1,7 +1,7 @@
 const db = require('../data/dbConfig.js');
 
 module.exports = {
-  addParticipant,
+  addEvent,
   find,
   findBy,
   findById,
@@ -10,11 +10,11 @@ module.exports = {
 };
 
 function find() {
-    return db('trip_participants').select('id', 'trips_id', 'name', 'thumbnail');
+    return db('events').select('id', 'trips_id', 'date', 'title', 'total_price');
   }
   
   function findBy(filter) {
-    return db('trip_participants').where(filter);
+    return db('events').where(filter);
   }
   
   // async function add(trip) {
@@ -22,27 +22,27 @@ function find() {
   
   //   return findById(id);
   // }
-function addParticipant(trip) {
-   return db('trip_participants')
+function addEvent(event) {
+   return db('events')
     
-   .insert(trip)
+   .insert(event)
    .then(ids => ids[0])
   }
   
   function findById(id) {
-    return db('trip_participants')
+    return db('events')
       .where({ id })
       .first();
   }
   
-  function update(id, participant) {
-    return db('trip_participants')
+  function update(id, event) {
+    return db('events')
       .where('id', Number(id))
-      .update(participant);
+      .update(event);
   }
   
   function remove(id) {
-    return db('trip_participants')
+    return db('events')
       .where('id', Number(id))
       .del();
   }

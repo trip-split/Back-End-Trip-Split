@@ -8,6 +8,7 @@ const jwtKey =
 
 
 const Users = require('../users/users-model.js');
+// const Authenticate = require('../auth/authenticate.js')
 
 
 authRouter.post('/register', (req, res) => {
@@ -38,7 +39,8 @@ authRouter.post('/login', (req, res) => {
           message: `${user.username} working...`,
           token,
           username: `${user.username}`,
-          id: `${user.id}`
+          id: `${user.id}`,
+          thumbnail: `${user.thumbnail}`
         });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
