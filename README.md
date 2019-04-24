@@ -13,7 +13,7 @@
 
 The _Database Schemas_ for the `users`, `trips`, `participants`, `events`, and `event participants` resources are:
 
-##### Users
+## Users
 
 Endpoint `/api/users/`
 - `.get` returns an array of users who are registered in the database
@@ -26,7 +26,7 @@ Endpoint `/api/users/`
 | email                   | string           | required, unique                                    |
 | thumbnail               | string           | not required                                        |
 
-##### Trips
+## Trips
 
 Endpoints:
 - `.get` to `/api/trips/` returns an array of all trips from all users in the database
@@ -46,7 +46,7 @@ Endpoints:
 | image                   | string           | not required                                        |
 | isCurrent               | boolean          | required                                            |
 
-##### Trip Participants
+## Trip Participants
 
 Endpoints:
 - `.get` to `/api/trip-participants/` returns an array of all participants from all trips in the database
