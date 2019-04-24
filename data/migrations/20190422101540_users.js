@@ -8,6 +8,7 @@ exports.up = function(knex) {
         .unique();
       users.string('password', 255).notNullable();
       users.string('email', 128).unique();
+      users.string('thumbnail');
     });
   };
   

@@ -8,8 +8,8 @@ module.exports = {
   update,
   remove,
   findTripByUser,
-  getTrips,
-  getUsers
+  // getTrips,
+  // getUsers
 };
 
 function find() {
@@ -20,11 +20,18 @@ function findBy(filter) {
   return db('trips').where(filter);
 }
 
-async function add(trip) {
-  const [id] = await db('trips').insert(trip);
+// async function add(trip) {
+//   const [id] = await db('trips').insert(trip);
 
-  return findById(id);
-}
+//   return findById(id);
+// }
+
+function add(trip) {
+  return db('trips')
+   
+  .insert(trip)
+  .then(ids => ids[0])
+ }
 
 function findById(id) {
   return db('trips')
@@ -51,13 +58,13 @@ function findTripByUser(user_id) {
 //     .first();
 }
 
-function getTrips(id) {
-  return db("trips").where({ user_id: id });
-}
+// function getTrips(id) {
+//   return db("trips").where({ user_id: id });
+// }
 
-function getUsers(id) {
-  return db("users")
-    .where({ id })
-    .first();
-}
+// function getUsers(id) {
+//   return db("users")
+//     .where({ id })
+//     .first();
+// }
 

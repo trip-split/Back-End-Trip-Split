@@ -12,15 +12,22 @@ router.get('/trips', (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.get('/trips/:id', (req, res) => {
+  const {id} = req.params;
+  Trips.findById(id)
+    .then(trips => {
+      res.json(trips);
+    })
+    .catch(err => res.send(err));
+});
+
 router.get("/usertrips/:id", (req, res) => {
   const { id } = req.params;
   getUsers(id)
     .then(user => {
-      // console.log(user);
       if (user) {
         return getTrips(id).then(trip => {
           user.trip = trip;
-          console.log(user);
           return res.status(200).json({ user });
         });
       } else {
@@ -32,29 +39,9 @@ router.get("/usertrips/:id", (req, res) => {
     });
 });
 
-// router.get('/usertrips/:user_id', (req, res) => {
-//   const {user_id} = req.params;
-//   console.log(req.params)
-//   Trips.findTripByUser(user_id)
-//     .then(trips => {
-//       res.json(trips);
-//     })
-//     .catch(err => res.send(err));
-// });
-
-router.get('/trips/:id', (req, res) => {
-  const {id} = req.params;
-  Trips.findById(id)
-    .then(trips => {
-      res.json(trips);
-    })
-    .catch(err => res.send(err));
-});
-
-
 router.post('/trips',  (req, res) => {
   let tripTitle = req.body
-  console.log(tripTitle.user_id)
+  // console.log(tripTitle)
   Trips
   .add(tripTitle)
   .then(trip => {

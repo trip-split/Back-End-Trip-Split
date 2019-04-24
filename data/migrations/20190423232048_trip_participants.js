@@ -3,8 +3,8 @@ exports.up = function(knex) {
       tripParticipants.increments();
       tripParticipants
         .integer("trips_id")
-        .notNullable()
         .unsigned()
+        .notNullable()
         .references("id")
         .inTable("trips")
         .onDelete('CASCADE')
@@ -13,11 +13,14 @@ exports.up = function(knex) {
         .string("name", 128)
         .notNullable()
       tripParticipants
-        .string("thumbnail")
+        .string('thumbnail')
     })
-};
-  
+}
 exports.down = function(knex, Promise) {
-  return knex.schema
-      .dropTableIfExists('trip_participants')
-};
+    return knex.schema
+        // .dropTableIfExists('trips')
+        // .dropTableIfExists('trip_participants_id')
+        .dropTableIfExists('trip_participants')
+        // .dropTableIfExists('events')
+        // .dropTableIfExists('events_details')
+  };

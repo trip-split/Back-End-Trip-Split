@@ -7,6 +7,7 @@ const { authenticate } = require('../auth/authenticate');
 const usersRouter = require('../users/users-router.js');
 const tripsRouter = require('../trips/trips-router');
 const tripParticipants = require('../trip-participants/trip-participants-router.js')
+const events = require('../events/events-router');
 
 const server = express();
 
@@ -20,7 +21,8 @@ server.get('/', async (req, res) => {
 
 server.use('/api', authRouter);
 server.use('/api', authenticate, tripsRouter);
-server.use('/api/users', usersRouter);
-server.use('/api', authenticate,  tripParticipants);
+server.use('/api/users', authenticate, usersRouter);
+server.use('/api', authenticate, tripParticipants);
+server.use('/api', authenticate, events);
 
 module.exports = server;
