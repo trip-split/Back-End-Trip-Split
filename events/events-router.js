@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const events = require('./events-model');
+const Events = require('./events-model');
 
 const db = require('../data/dbConfig.js');
 
@@ -18,7 +18,7 @@ router.post('/usertrips/add-event', async (req, res) => {
 
     console.log(tripEvent)
     try{
-    events
+    Events
     .addEvent(tripEvent)
     .then(event => {
         res.status(200).json({message: 'Trip Participant successfully added', event})
@@ -72,32 +72,26 @@ router.post('/usertrips/add-event', async (req, res) => {
 //     })
 //   })
 
-// router.get("/usertrips/participants/:id", (req, res) => {
-//     const { id } = req.params;
-//     getParticipants(id)
-//       .then(trip => {
-//         if (trip) {
-//           return getParticipants(id).then(participant => {
-//             trip.participant = participant;
-//             return res.status(200).json({ trip });
-//           });
-//         } else {
-//           res.status(404).json({ error: "please provide trip id" });
-//         }
-//       })
-//       .catch(error => {
-//         res.status(500).json({ error: "Could not get trip participants" });
-//       });
-//   });
+router.get("/usertrips/events/:id", (req, res) => {
+    const { id } = req.params;
+    getEvents(id)
+      .then(trip => {
+        if (trip) {
+          return getEvents(id).then(event => {
+            trip.event = event;
+            return res.status(200).json({ event });
+          });
+        } else {
+          res.status(404).json({ error: "please provide event id" });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({ error: "Could not get event participants" });
+      });
+  });
 
   
-// router.get('/trip-participants', (req, res) => {
-//     TripParticipants.find()
-//       .then(trips => {
-//         res.json(trips);
-//       })
-//       .catch(err => res.send(err));
-//   });
+
 
 //   function getUsers(id) {
 //     return db("users")
@@ -112,5 +106,9 @@ router.post('/usertrips/add-event', async (req, res) => {
 //   function getParticipants(id) {
 //     return db("trip_participants").where({ trips_id: id });
 //   }
+
+  function getEvents(id) {
+    return db("events").where({ trips_id: id });
+  }
 
 module.exports = router;

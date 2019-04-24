@@ -12,7 +12,7 @@ exports.up = function(knex) {
             .date('date')
             .notNullable();
         events
-            .text("title", 128)
+            .string("title", 128)
             .notNullable();
         events
             .decimal("total_price")

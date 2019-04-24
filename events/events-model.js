@@ -25,7 +25,7 @@ function find() {
 function addEvent(event) {
    return db('events')
     
-   .insert(events)
+   .insert(event)
    .then(ids => ids[0])
   }
   
