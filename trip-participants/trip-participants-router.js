@@ -12,11 +12,11 @@ router.post('/usertrips/add-participant', async (req, res) => {
     tripParticipant.thumbnail = req.body.thumbnail;
     console.log(tripParticipant)
     try{
-      TripParticipants
+    TripParticipants
     .addParticipant(tripParticipant)
-    .then(tripParticipant => {
+    .then(participant => {
         res.status(200).json({message: 'Trip Participant successfully added', tripParticipant})
-        console.log(tripParticipant);
+        console.log(participant);
     })
     }
     
@@ -53,7 +53,7 @@ router.post('/usertrips/add-participant', async (req, res) => {
     TripParticipants.update(id, edits)
     .then(participantUpdate => {
         if( !participantUpdate) {
-            res.status(404).json({ success: false, message: 'The trip participant with the specified ID does not exist.' })
+            res.status(404).json({ success: false, message: 'The trip participant with the specified ID does not exist.', edits })
         }  else if ( !edits ) {
             return res.status(400).json({  success: false, errorMessage: 'The participant does not exist on this trip.' })
         }
