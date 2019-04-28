@@ -9,9 +9,6 @@ exports.up = function(knex) {
             .onDelete('CASCADE')
             .onUpdate('CASCADE');
         events
-            .date('date')
-            .notNullable();
-        events
             .string("title", 128)
             .notNullable();
         events
