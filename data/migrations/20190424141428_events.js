@@ -26,7 +26,7 @@ exports.up = function(knex) {
             .boolean('userPaid')
             .notNullable();
         events
-            .string('participantPaid');
+            .integer('participantPaid');
     })
   };
   
