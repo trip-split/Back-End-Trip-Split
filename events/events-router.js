@@ -7,14 +7,13 @@ const db = require('../data/dbConfig.js');
 
 router.post('/usertrips/add-event', async (req, res) => {
     let tripEvent = {};
-    tripEvent.trips_id = req.body.trips_id;
-    tripEvent.date = req.body.date;
-    tripEvent.title = req.body.title;
-    tripEvent.total_price = req.body.total_price;
-    tripEvent.participants = req.body.participants;
-    tripEvent.userOnTrip = req.body.userOnTrip;
-    tripEvent.userPaid = req.body.userPaid;
-    tripEvent.participantPaid = req.body.participantPaid;
+    tripEvent.trips_id = req.body.event.trips_id;
+    tripEvent.title = req.body.event.title;
+    tripEvent.total_price = req.body.event.total_price;
+    tripEvent.participants = req.body.event.participants;
+    tripEvent.userOnTrip = req.body.event.userOnTrip;
+    tripEvent.userPaid = req.body.event.userPaid;
+    tripEvent.participantPaid =   req.body.event.participantPaid;
 
     console.log(tripEvent)
     try{
