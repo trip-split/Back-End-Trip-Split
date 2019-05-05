@@ -20,7 +20,7 @@ router.post('/usertrips/add-event', async (req, res) => {
     Events
     .addEvent(tripEvent)
     .then(event => {
-        res.status(200).json({message: 'Trip Participant successfully added', event})
+        res.status(200).json({message: 'Trip Participant successfully added', tripEvent})
         console.log(event);
     })
     }
@@ -31,45 +31,50 @@ router.post('/usertrips/add-event', async (req, res) => {
     }
   });
 
-//   router.delete('/usertrips/delete-participant/:id', (req, res) => {
-//     const {id} = req.params;
-//     TripParticipants.
-//     remove(id)
-//     .then(participant => {
-//         if (participant) {
-//             res.status(204).json({ message: 'Participant successfully deleted from the trip' });
-//         } else {
-//             res.status(404).json({ success: false, message: "The participant with the specified ID does not exist." });
-//         }
-//     })
-//         .catch(err => {
-//             res.status(500).json({ error: "The participant could not be removed" })  
-//     })
-//   })
+  router.delete('/usertrips/delete-event/:id', (req, res) => {
+    const {id} = req.params;
+    Events.
+    remove(id)
+    .then(event => {
+        if (event) {
+            res.status(204).json({ message: 'Event successfully deleted from the trip' });
+        } else {
+            res.status(404).json({ success: false, message: "The event with the specified ID does not exist." });
+        }
+    })
+        .catch(err => {
+            res.status(500).json({ error: "The event could not be removed" })  
+    })
+  })
 
-//   router.put('/usertrips/edit-participant/:id', (req, res) => {
-//     const { id } = req.params;
-//     let edits = {};
-//     edits.trips_id = req.body.trips_id;
-//     edits.name = req.body.name;
-//     edits.thumbnail = req.body.thumbnail;
-//     console.log(edits)
+  router.put('/usertrips/edit-event/:id', (req, res) => {
+    const { id } = req.params;
+    let edits = {};
+    edits.trips_id = req.body.trips_id;
+    edits.date = req.body.date;
+    edits.title = req.body.title;
+    edits.total_price = req.body.total_price;
+    edits.participants = req.body.participants;
+    edits.userOnTrip = req.body.userOnTrip;
+    edits.userPaid = req.body.userPaid;
+    edits.participantPaid = req.body.participantPaid;
+    console.log(edits)
   
-//     TripParticipants.update(id, edits)
-//     .then(participantUpdate => {
-//         if( !participantUpdate) {
-//             res.status(404).json({ success: false, message: 'The trip participant with the specified ID does not exist.' })
-//         }  else if ( !edits ) {
-//             return res.status(400).json({  success: false, errorMessage: 'The participant does not exist on this trip.' })
-//         }
-//          else {
-//             return res.status(200).json({ success: true, edits })
-//         }
-//     })
-//     .catch(err => {
-//         res.status(500).json({  success: false, error: 'The trip participant could not be modified'})
-//     })
-//   })
+    Events.update(id, edits)
+    .then(eventUpdate => {
+        if( !eventUpdate) {
+            res.status(404).json({ success: false, message: 'The trip event with the specified ID does not exist.', edits })
+        }  else if ( !edits ) {
+            return res.status(400).json({  success: false, errorMessage: 'The event does not exist on this trip.' })
+        }
+         else {
+            return res.status(200).json({ success: true, edits })
+        }
+    })
+    .catch(err => {
+        res.status(500).json({  success: false, error: 'The trip event could not be modified'})
+    })
+  })
 
 router.get("/usertrips/events/:id", (req, res) => {
     const { id } = req.params;
@@ -89,22 +94,13 @@ router.get("/usertrips/events/:id", (req, res) => {
       });
   });
 
-  
-
-
-//   function getUsers(id) {
-//     return db("users")
-//       .where({ id })
-//       .first();
-//   }
-  
-//   function getTrips(id) {
-//     return db("trips").where({ user_id: id });
-//   }
-
-//   function getParticipants(id) {
-//     return db("trip_participants").where({ trips_id: id });
-//   }
+  router.get('/trip-events', (req, res) => {
+    Events.find()
+      .then(event => {
+        res.json(event);
+      })
+      .catch(err => res.send(err));
+  });
 
   function getEvents(id) {
     return db("events").where({ trips_id: id });
