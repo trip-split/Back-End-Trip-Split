@@ -13,7 +13,7 @@ module.exports = {
 };
 
 function find() {
-  return db('trips').select('id', 'user_id', 'date', 'location', 'image');
+  return db('trips').select('id', 'user_id', 'date', 'location', 'image', 'isCurrent');
 }
 
 function findBy(filter) {
@@ -30,7 +30,9 @@ function add(trip) {
   return db('trips')
    
   .insert(trip)
-  .then(ids => ids[0])
+  .then(ids => {
+    console.log(ids)
+    ids[0]})
  }
 
 function findById(id) {
