@@ -43,19 +43,12 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    // pool: {
-    //   afterCreate: (conn, done) => {
-    //     conn.run('PRAGMA foreign_keys = ON', done);
-    //   },
-    // },
     connection: prodDbConnection, // an object or a string
     migrations: {
       directory: './data/migrations',
     },
     seeds: {
       directory: './data/seeds',
-    },
+    }
   }
-
-
 };
