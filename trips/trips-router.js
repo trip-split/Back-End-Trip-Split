@@ -45,7 +45,7 @@ router.post('/trips',  (req, res) => {
   Trips
   .add(tripTitle)
   .then(trip => {
-      res.status(200).json({message: 'Trip successfully added', trip});
+      res.status(200).json({message: 'Trip successfully added', tripTitle});
   })
   .catch(err => {
       res.status(500).json({message: 'Error adding trip, make sure the req.body is correct'})
