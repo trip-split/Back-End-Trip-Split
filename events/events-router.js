@@ -80,6 +80,7 @@ router.get("/usertrips/events/:id", (req, res) => {
     const { id } = req.params;
     getEvents(id)
       .then(trip => {
+        console.log(trip);
         if (trip) {
           return getEvents(id).then(event => {
             trip.event = event;
