@@ -20,11 +20,11 @@ router.post('/usertrips/add-event', (req, res) => {
     .addEvent(tripEvent)
     .then(event => {
         res.status(200).json({message: 'Trip event successfully added', event})
-        console.log(event);
+        // console.log(event);
     })
     .catch(err => {
         res.status(500).json({message: 'Error adding trip, make sure the req.body is correct', err})
-        console.log(event);
+        // console.log(event);
     })
   });
 
