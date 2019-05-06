@@ -22,12 +22,12 @@ function find() {
   
   //   return findById(id);
   // }
-function addEvent(event) {
-   return db('events')
-    
-   .insert(event)
-   .then(ids => ({ id: ids[0] }));
-  }
+  function addEvent(event) {
+    return db('events')
+     
+    .insert(event)
+    .then(ids => ids[0])
+   }
   
   function findById(id) {
     return db('events')
