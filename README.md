@@ -79,7 +79,7 @@ Endpoints:
 Endpoints:
 - `.get` to `/api/trip-events` returns an array of all events from all trips in the database
 - `.get` to `/api/usertrips/events/:id` returns an array of all participants for the trip specified by `/:id`
-- `.post` to `/api/usertrips/add-events` initializes a new event
+- `.post` to `/api/usertrips/add-event` initializes a new event
 - `.delete` to `/api/usertrips/delete-events/:id` deletes an event by `/:id` 
 - `.put` to `/api/usertrips/edit-event/:id` lets you edit an event by event `/:id` with the edits in the req.body 
 
