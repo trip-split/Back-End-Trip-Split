@@ -5,7 +5,7 @@ const Events = require('./events-model');
 const db = require('../data/dbConfig.js');
 
 
-router.post('/usertrips/add-event', async (req, res) => {
+router.post('/usertrips/add-event', (req, res) => {
     let tripEvent = {};
     tripEvent.trips_id = req.body.event.trips_id;
     tripEvent.title = req.body.event.title;
