@@ -31,27 +31,6 @@ router.post('/usertrips/add-event', async (req, res) => {
     }
   });
 
-  router.post('/usertrips/add-event', async (req, res) => {
-    let tripParticipant = {};
-    tripParticipant.trips_id = req.body.trips_id;
-    tripParticipant.name = req.body.name;
-    tripParticipant.thumbnail = req.body.thumbnail;
-    console.log(tripParticipant)
-    try{
-    TripParticipants
-    .addParticipant(tripParticipant)
-    .then(participant => {
-        res.status(200).json({message: 'Trip Participant successfully added', tripParticipant})
-        console.log(participant);
-    })
-    }
-    
-    catch(err) {
-        res.status(500).json({message: 'Error adding trip, make sure the req.body is correct', err})
-        console.log(tripParticipant);
-    }
-  });
-
   router.delete('/usertrips/delete-event/:id', (req, res) => {
     const {id} = req.params;
     Events.
