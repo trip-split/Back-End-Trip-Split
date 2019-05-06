@@ -22,10 +22,10 @@ router.post('/usertrips/add-event', (req, res) => {
         res.status(200).json({message: 'Trip event successfully added', event})
         console.log(event);
     })
-    .catch(err) {
+    .catch(err => {
         res.status(500).json({message: 'Error adding trip, make sure the req.body is correct', err})
         console.log(event);
-    }
+    })
   });
 
   router.delete('/usertrips/delete-event/:id', (req, res) => {
