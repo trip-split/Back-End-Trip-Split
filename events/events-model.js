@@ -26,7 +26,7 @@ function addEvent(event) {
    return db('events')
     
    .insert(event)
-   .then(ids => ids[0])
+   .then(ids => ({ id: ids[0] }));
   }
   
   function findById(id) {
