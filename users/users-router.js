@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.post('/new-user', (req, res) => {
   let user = req.body;
-  Users.add(user)
+  Users.insert(user)
     .then(user => {
       res.status(201).json(user);
     })

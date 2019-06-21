@@ -3,8 +3,8 @@
 const localPgConnection = {
   host: 'localhost',
   database: 'users',
-  user: process.env.USER_NAME,
-  password: process.env.PASSWORD
+  user: 'Lambda',
+  password: 'Lambda$chool123456789'
 }
 
 const prodDbConnection = process.env.DATABASE_URL || localPgConnection
