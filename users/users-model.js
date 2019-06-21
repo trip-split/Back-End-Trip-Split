@@ -20,7 +20,8 @@ async function add(user) {
   const id = await db('users').insert(user, 'id')
   return db('users')
   .where({id})
-  .first()
+  // .first()
+  .then(ids => ({id}));
 }
 
 function insert(user) {

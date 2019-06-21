@@ -13,9 +13,9 @@ router.get('/', (req, res) => {
 
 router.post('/new-user', (req, res) => {
   let user = req.body;
-  Users.insert(user)
-    .then(saved => {
-      res.status(201).json(saved);
+  Users.add(user)
+    .then(user => {
+      res.status(201).json(user);
     })
     .catch(error => {
       res.status(500).json({error: 'error registering user'});
