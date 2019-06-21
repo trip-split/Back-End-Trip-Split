@@ -17,7 +17,6 @@ server.get('/', async (req, res) => {
   res.status(200).json({ api: 'up' });
 });
 
-server.use('/api', authRouter);
 server.use('/api', tripsRouter);
 server.use('/api/users', usersRouter);
 server.use('/api', tripParticipants);
